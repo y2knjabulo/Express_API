@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<style>
+    body {
+        background-color: rgb(134, 197, 226);
+    }
+</style>
+<body>
+  <h1>Greetings API widget</h1>
+
+  <div x-data="{
+      username : '',
+      greeting : 'hello',
+      language:'',
+      greet() {
+          
+          axios
+              .get(`/api/greet?username=${this.username}&language=${this.language}`)
+              .then(result => {
+
+                  if (result.data.error) {
+                      this.greeting = result.data.error
+                  } else {
+                      this.greeting = result.data.message
+                  }
+
+              })
+      }
+  }" >
+
+
+      <div x-text="greeting" >
+
+      </div>
+      <div>
+          <input type="radio" x-model="language" value="english" id="english"> 
+          <label for="english">English</label>
+          <input type="radio" x-model="language" value="xhosa" id="xhosa">
+          <label for="xhosa">Xhosa</label>
+          <input type="radio" x-model="language" value="zulu" id="zulu">
+          <label for="zulu"> Zulu </label>
+      </div>
+
+      <input type="text" x-model="username" >
+      <input type="button" class="button" value="Greet" x-on:click="greet()">
+
+  </div>
+  <div>
+      <h1>Add Language</h1>
+<div>
+      Language: <input type="text" x-model="new_language" placeholder="new language" >
+      
+      Greeting: <input type="text" x-model="new_greeting" placeholder="new greeting" >
+      <input type="button" class="button" value="Add language"></input>
+  </div>
+  </div>
+
+</body>
+
+</html>

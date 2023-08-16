@@ -1,0 +1,25 @@
+POST https://localhost:4001/api/greet
+content-type: application/json
+
+{
+	"language" : "zulu",
+	"greeting" : "Sawubona"
+}
+###
+
+POST https://localhost:4001/api/greet
+content-type: application/json
+
+{
+	"language" : "English",
+	"greeting" : "Hello"
+}
+###
+
+POST https://localhost:4001/api/greet
+content-type: application/json
+
+{
+	"language" : "Venda",
+	"greeting" : "Nda"
+}
